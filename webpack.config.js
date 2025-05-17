@@ -46,7 +46,7 @@ module.exports = {
                 {from: "./src/styles/adaptive.css", to: "css"},
                 {from: "./src/styles/styles.css", to: "css"},
                 {from: "./src/libraries/css/sidebars.css", to: "css"},
-                {from: "./node_modules/chart.js/dist/chart.js", to: "js"}
+                {from: "./node_modules/chart.js/dist/chart.umd.js", to: "js"}
             ],
         }),
     ],

@@ -33,7 +33,7 @@ export class Router {
                 },
                 useLayout: '/templates/layout.html',
                 scripts: [
-                        'chart.js'
+                        'chart.umd.js'
                     ]
             },
             {

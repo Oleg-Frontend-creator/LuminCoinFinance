@@ -1,3 +1,6 @@
+import {AuthUtils} from "../../utils/auth-utils";
+import config from "../../config/config";
+
 export class Login {
     constructor() {
         this.findElements();
@@ -30,9 +33,64 @@ export class Login {
         return isError;
     }
 
-    login() {
+    async login() {
         if (!this.validate()) {
-            console.log('VALID');
+            const result = {
+                error: false,
+                response: null
+            };
+
+            const params = {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json",
+                    "Accept": "application/json",
+                },
+            };
+
+            const body = {
+                "email": this.emailElement.value,
+                "password": this.passwordElement.value,
+                "rememberMe": this.processButtonElement.value
+            };
+
+            let token = AuthUtils.getAuthInfo(AuthUtils.accessTokenKey);
+                if (token)
+                    params.headers["authorization"] = token;
+
+            if (body) {
+                params.body = JSON.stringify(body);
+            }
+
+            let response = null;
+
+            try {
+                response = await fetch(config.api + '/login', params);
+                result.response = await response.json();
+            } catch (e) {
+                result.error = true;
+                return result;
+            }
+            if (response.status < 200 || response.status >= 300) {
+                result.error = true;
+                if (response.status === 401) {
+                    if (!token) {
+                        //токена нет
+                        result.redirect = '/login';
+                    } else {
+                        //токен устарел, надо обновить
+                        const updateTokenResult = await AuthUtils.updateRefreshToken();
+
+                        if (updateTokenResult) {
+                            //делаем запрос повторно так как токены обновлены
+                            // return this.request(url, method, useAuth, body);
+                        } else {
+                            result.redirect = '/login';
+                        }
+                    }
+                }
+            }
+            return result;
         }
     }
 }
