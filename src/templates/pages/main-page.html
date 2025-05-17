@@ -1,44 +1,46 @@
-<header class="content-header my-md-5 my-2">
-    <h1 class="main-title fs-1 fw-bold text-primary-emphasis mb-2" id="page-title">Главная</h1>
-</header>
-<div class="pills-time-interval mb-5">
-    <ul class="nav nav-pills row-gap-3 justify-content-md-start justify-content-center">
-        <li class="nav-item">
-            <a class="nav-link d-flex justify-content-center align-items-center active" href="#">Сегодня</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link d-flex justify-content-center align-items-center" href="#">Неделя</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link d-flex justify-content-center align-items-center" href="#">Месяц</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link d-flex justify-content-center align-items-center" href="#">Год</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link d-flex justify-content-center align-items-center" href="#">Все</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link d-flex justify-content-center align-items-center" href="#">Интервал</a>
-        </li>
-        <li class="nav-item d-flex align-items-center">
-            <span class="me-3 fw-bold">с</span><a href="javascript:void(0)"
-                                                  class="date-field border-2 border-bottom border-dark-subtle me-4 text-decoration-none"
-                                                  id="prev-date">Дата</a>
-            <span class="me-3 fw-bold">по</span><a href="javascript:void(0)"
-                                                   class="date-field border-2 border-bottom border-dark-subtle text-decoration-none"
-                                                   id="next-date">Дата</a>
-        </li>
-    </ul>
-</div>
-
-<div class="pie-chart-block d-flex align-items-center row row-cols-2 mt-xl-5 pt-lg-5 w-75 flex-sm-column flex-xl-row">
-    <div class="diagram col w-50 border-dark-subtle border-end border-opacity-25 text-center">
-        <h2 class="canvas-title fs-3 fw-bold text-primary-emphasis">Расходы</h2>
-        <canvas class=" h-auto" id="pie-chart-expenses"></canvas>
+<div class="container ms-0 me-0 me-md-5">
+    <header class="content-header my-md-5 my-2">
+        <h1 class="main-title fs-1 fw-bold text-primary-emphasis mb-2" id="page-title">Главная</h1>
+    </header>
+    <div class="pills-time-interval mb-5">
+        <ul class="nav nav-pills row-gap-3 justify-content-md-start justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link d-flex justify-content-center align-items-center active" href="#">Сегодня</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link d-flex justify-content-center align-items-center" href="#">Неделя</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link d-flex justify-content-center align-items-center" href="#">Месяц</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link d-flex justify-content-center align-items-center" href="#">Год</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link d-flex justify-content-center align-items-center" href="#">Все</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link d-flex justify-content-center align-items-center" href="#">Интервал</a>
+            </li>
+            <li class="nav-item d-flex align-items-center">
+                <span class="me-3 fw-bold">с</span><a href="javascript:void(0)"
+                                                      class="date-field border-2 border-bottom border-dark-subtle me-4 text-decoration-none"
+                                                      id="prev-date">Дата</a>
+                <span class="me-3 fw-bold">по</span><a href="javascript:void(0)"
+                                                       class="date-field border-2 border-bottom border-dark-subtle text-decoration-none"
+                                                       id="next-date">Дата</a>
+            </li>
+        </ul>
     </div>
-    <div class="diagram col w-50 text-center mt-4 mt-xl-0">
-        <h2 class="canvas-title fs-3 fw-bold text-primary-emphasis">Доходы</h2>
-        <canvas class=" h-auto ms-0" id="pie-chart-income"></canvas>
+
+    <div class="pie-chart-block d-flex align-items-center row row-cols-2 mt-xl-5 pt-lg-5 w-100 flex-column flex-xl-row">
+        <div class="diagram col w-50 border-dark-subtle border-end border-opacity-25 text-center">
+            <h2 class="canvas-title fs-3 fw-bold text-primary-emphasis">Расходы</h2>
+            <canvas class=" h-auto" id="pie-chart-expenses"></canvas>
+        </div>
+        <div class="diagram col w-50 text-center mt-4 mt-xl-0">
+            <h2 class="canvas-title fs-3 fw-bold text-primary-emphasis">Доходы</h2>
+            <canvas class=" h-auto ms-0" id="pie-chart-income"></canvas>
+        </div>
     </div>
 </div>

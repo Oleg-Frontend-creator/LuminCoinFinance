@@ -20,6 +20,10 @@
         display: flex;
     }
 
+    .main-title {
+        text-align: center;
+    }
+
     .burger{
         width: 25px;
         cursor: pointer;
@@ -110,7 +114,7 @@
         font-size: 14px;
     }
 
-    input.form-control {
+    input.form-control, .form-signup .input-group, .form-login .input-group {
         width: 280px;
     }
 

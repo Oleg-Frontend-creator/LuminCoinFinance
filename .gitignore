@@ -2,4 +2,4 @@ dist
 node_modules
 Backend for JS project.postman_collection.json
 openapi.yaml
-src/package-lock.json
+package-lock.json

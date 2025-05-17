@@ -36,5 +36,15 @@ export class MainPage {
         document.getElementById('close').addEventListener("click", () => {
             document.getElementById('menu').classList.remove('open');
         });
+
+        document.getElementById('person-icon').addEventListener("click", () => {
+            if (document.getElementById('person-name').classList.contains('logout')) {
+                document.getElementById('person-name').classList.remove('logout');
+                document.getElementById('logout-btn').classList.remove('active');
+            } else {
+                document.getElementById('person-name').classList.add('logout');
+                document.getElementById('logout-btn').classList.add('active');
+            }
+        });
     }
 }

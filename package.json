@@ -26,5 +26,10 @@
     "webpack": "^5.89.0",
     "webpack-cli": "5.1.4",
     "webpack-dev-server": "^5.2.1"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.6",
+    "chart.js": "^4.4.9",
+    "sidebars": "^0.0.7"
   }
 }

@@ -1,4 +1,4 @@
-<main class="form-signin w-100 m-auto container-fluid d-flex">
+<section class="form-signup w-100 m-auto container-fluid d-flex">
     <form class="text-center d-flex flex-column align-items-center justify-content-center">
         <img class="mb-4 pb-2" src="/images/login-logo.png" alt="Logo">
         <h1 class="mb-3 fw-bold text-primary-emphasis">Создайте аккаунт</h1>
@@ -9,7 +9,7 @@
       fill="#6C757D"/>
 </svg>
             </span>
-            <input type="text" class="form-control rounded-end-2" placeholder="ФИО" id="nameInput">
+            <input type="text" class="signup-input form-control rounded-end-2" placeholder="ФИО" id="nameInput">
             <span id="nameInput-error" class="error invalid-feedback">Заполните поле</span>
         </div>
         <div class="input-group mt-1">
@@ -20,7 +20,8 @@
       fill="#6C757D"/>
 </svg>
             </span>
-            <input type="text" class="form-control rounded-end-2" placeholder="Электронная почта" id="emailInput">
+            <input type="text" class="signup-input form-control rounded-end-2" placeholder="Электронная почта"
+                   id="emailInput">
             <span id="emailInput-error" class="error invalid-feedback">Заполните поле</span>
         </div>
         <div class="input-group mt-2 mb-1">
@@ -31,8 +32,9 @@
       fill="#6C757D"/>
 </svg>
             </span>
-            <input type="password" class="form-control rounded-end-2" placeholder="Пароль" id="passwordInput">
-            <span id="passwordInput-error" class="error invalid-feedback">Заполните поле</span>
+            <input type="password" class="signup-input form-control rounded-end-2" placeholder="Пароль"
+                   id="passwordInput">
+            <span id="passwordInput-error" class="error invalid-feedback">Заполните поле пароля корректно</span>
         </div>
         <div class="input-group mt-2 mb-1">
             <span class="input-group-text bg-secondary-subtle">
@@ -42,12 +44,13 @@
       fill="#6C757D"/>
 </svg>
             </span>
-            <input type="password" class="form-control rounded-end-2" placeholder="Подтверждение пароля" id="passwordRepeatInput">
-            <span id="passwordRepeatInput-error" class="error invalid-feedback">Заполните поле</span>
+            <input type="password" class="signup-input form-control rounded-end-2" placeholder="Подтверждение пароля"
+                   id="passwordRepeatInput">
+            <span id="passwordRepeatInput-error" class="error invalid-feedback">Пароль и повторение пароля должны совпадать</span>
         </div>
-        <a href="/" class="btn btn-primary w-100 py-2 mt-3 mb-1" type="button">Войти</a>
+        <button class="btn btn-primary w-100 py-2 mt-3 mb-1" id="process-btn" type="button">Войти</button>
         <p class="mt-2 mb-3">
             Уже есть аккаунт? <a href="/login">Войдите в систему</a>
         </p>
     </form>
-</main>
+</section>

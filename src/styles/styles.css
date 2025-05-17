@@ -3,9 +3,8 @@
     font-family: "Roboto", sans-serif;
 }
 
-* {
+body {
     font-family: Roboto, sans-serif;
-    transition: .5s all;
 }
 
 .balance-block {
@@ -24,12 +23,17 @@
     width: 100px;
     border: 1px solid #6C757D;
     color: #6C757D;
+    transition: .5s all;
 }
 
 .pills-time-interval .nav-link:hover {
     border: 1px solid #6C757D;
-    background-color: #6C757D !important;
+    background-color: #6C757D;
     color: white;
+}
+
+.nav .list-group-item, .link-text {
+    transition: .5s all;
 }
 
 
@@ -39,7 +43,7 @@
 }
 
 .nav .list-group-item:hover .link-text {
-    color: white !important;
+    color: white;
 }
 
 .nav-item .nav-link:hover, .nav-item .active, .nav-item .nav-link:hover svg path, .nav-item .btn-toggle:hover {
@@ -48,20 +52,23 @@
 
 .nav-item .nav-link:hover svg path, .nav-item .active svg path {
     fill: white;
+    transition: .5s all;
 }
 
 .nav-item .nav-link:hover .link-text, .nav-item .active .link-text, .nav-item .btn-toggle:hover .link-text {
     color: white !important;
 }
 
-#menu.open {
+.sidebar-menu.open {
     display: flex !important;
-    align-items: center !important;
+    align-items: center;
     justify-content: center;
+    transition: .5s all;
 }
 
 .burger {
     display: none;
+    transition: .5s all;
 }
 
 .close-menu {
@@ -74,6 +81,7 @@
     top: 20px;
     right: 20px;
     cursor: pointer;
+    transition: .5s all;
 }
 
 .close-menu.open {
@@ -90,6 +98,7 @@
 
 .btn-toggle[aria-expanded="true"] {
     background-color: #0d6efd;
+    transition: .5s all;
 }
 
 .btn-toggle::after {
@@ -120,18 +129,28 @@
     max-width: 397px;
 }
 
+.form-signup .input-group, .form-login .input-group {
+    width: 400px;
+}
+
 .add-category-card {
     height: 119px;
     box-sizing: border-box;
     cursor: pointer;
+    transition: .5s all;
 }
 
 .add-category-card:hover {
     border: 1px solid gray;
 }
 
+.add-category-card .card-body {
+    color: #ced4da;
+    transition: all .5s;
+}
+
 .add-category-card:hover .card-body {
-    color: gray !important;
+    color: gray;
 }
 
 .expense-name-input {
@@ -143,6 +162,19 @@ tr {
     border-bottom: 1px solid #DEE2E6;
 }
 
-th, td {
-    padding: 13px 0 !important;
+.table th, .table td {
+    padding: 13px 0;
+}
+
+.person-info .person-name-text.logout {
+    display: none;
+    transition: all .5s;
+}
+.person-info .logout-btn {
+    display: none;
+}
+
+.person-info .logout-btn.active {
+    display: block;
+    transition: all .5s;
 }

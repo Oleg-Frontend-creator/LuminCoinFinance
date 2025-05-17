@@ -40,13 +40,13 @@ module.exports = {
                 {from: "./src/templates", to: "templates"},
                 {from: "./src/static/images", to: "images"},
                 {from: "./src/static/fonts", to: "fonts"},
-                {from: "./src/libraries/js/bootstrap.min.js", to: "js"},
+                {from: "./node_modules/bootstrap/dist/js/bootstrap.js", to: "js"},
                 {from: "./src/libraries/js/sidebars.js", to: "js"},
-                {from: "./src/libraries/css/bootstrap.min.css", to: "css"},
+                {from: "./node_modules/bootstrap/dist/css/bootstrap.css", to: "css"},
                 {from: "./src/styles/adaptive.css", to: "css"},
                 {from: "./src/styles/styles.css", to: "css"},
                 {from: "./src/libraries/css/sidebars.css", to: "css"},
-                {from: "./src/libraries/js/chart.js", to: "js"}
+                {from: "./node_modules/chart.js/dist/chart.js", to: "js"}
             ],
         }),
     ],
