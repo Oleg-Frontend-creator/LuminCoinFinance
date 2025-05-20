@@ -1,3 +1,5 @@
+import {ClickUtils} from "../utils/click-utils";
+
 export class MainPage {
     constructor() {
         this.init();
@@ -28,23 +30,7 @@ export class MainPage {
             },
             padding: '40px'
         }));
-        //бургерное меню на адаптив
 
-        document.getElementById('burger').onclick = function () {
-            document.getElementById('menu').classList.add('open');
-        }
-        document.getElementById('close').addEventListener("click", () => {
-            document.getElementById('menu').classList.remove('open');
-        });
-
-        document.getElementById('person-icon').addEventListener("click", () => {
-            if (document.getElementById('person-name').classList.contains('logout')) {
-                document.getElementById('person-name').classList.remove('logout');
-                document.getElementById('logout-btn').classList.remove('active');
-            } else {
-                document.getElementById('person-name').classList.add('logout');
-                document.getElementById('logout-btn').classList.add('active');
-            }
-        });
+        ClickUtils.addEvents(window.location.pathname);
     }
 }

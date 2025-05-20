@@ -1,18 +1,18 @@
 import {AuthUtils} from "../../utils/auth-utils";
-import config from "../../config/config";
+import {HttpUtils} from "../../utils/http-utils";
 
 export class Login {
-    constructor() {
+    constructor(openNewRoute) {
+        this.openNewRoute = openNewRoute;
         this.findElements();
         this.processButtonElement.addEventListener('click', this.login.bind(this));
-
     }
 
     findElements() {
         this.emailElement = document.getElementById('emailInput');
         this.passwordElement = document.getElementById('passwordInput');
+        this.rememberMeElement = document.getElementById('rememberMe');
         this.processButtonElement = document.getElementById('process-btn');
-
     }
 
     validate() {
@@ -30,67 +30,48 @@ export class Login {
             this.passwordElement.classList.add('is-invalid');
         }
 
-        return isError;
+        return !isError;
     }
 
     async login() {
-        if (!this.validate()) {
-            const result = {
-                error: false,
-                response: null
-            };
+        if (this.validate()) {
+            const result = await HttpUtils.request('/login', 'POST', false, {
+                email: this.emailElement.value,
+                password: this.passwordElement.value,
+                rememberMe: this.rememberMeElement.checked
+            });
 
-            const params = {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json",
-                    "Accept": "application/json",
-                },
-            };
-
-            const body = {
-                "email": this.emailElement.value,
-                "password": this.passwordElement.value,
-                "rememberMe": this.processButtonElement.value
-            };
-
-            let token = AuthUtils.getAuthInfo(AuthUtils.accessTokenKey);
-                if (token)
-                    params.headers["authorization"] = token;
-
-            if (body) {
-                params.body = JSON.stringify(body);
+            if (result.error || !result.response || (result.response && (!result.response.tokens.accessToken
+                || !result.response.tokens.refreshToken || !result.response.user.name || !result.response.user.lastName
+                || !result.response.user.id))) {
+                console.log(result.response.message)
+                return false;
             }
+            AuthUtils.setAuthInfo(result.response.tokens.accessToken, result.response.tokens.refreshToken,
+                JSON.stringify({
+                    id: result.response.user.id,
+                    name: result.response.user.name,
+                    lastName: result.response.user.lastName
+                }));
 
-            let response = null;
+            await this.getUserBalance(AuthUtils.getAuthInfo(AuthUtils.accessTokenKey), AuthUtils.getAuthInfo(AuthUtils.refreshTokenKey));
 
-            try {
-                response = await fetch(config.api + '/login', params);
-                result.response = await response.json();
-            } catch (e) {
-                result.error = true;
-                return result;
-            }
-            if (response.status < 200 || response.status >= 300) {
-                result.error = true;
-                if (response.status === 401) {
-                    if (!token) {
-                        //токена нет
-                        result.redirect = '/login';
-                    } else {
-                        //токен устарел, надо обновить
-                        const updateTokenResult = await AuthUtils.updateRefreshToken();
+            this.openNewRoute('/');
+        }
+    }
 
-                        if (updateTokenResult) {
-                            //делаем запрос повторно так как токены обновлены
-                            // return this.request(url, method, useAuth, body);
-                        } else {
-                            result.redirect = '/login';
-                        }
-                    }
-                }
-            }
-            return result;
+    async getUserBalance(accessToken, refreshToken) {
+        const result = await HttpUtils.request('/balance', 'GET', true);
+
+        if (result.error || !result.response) {
+            console.log(result.response.message)
+            return false;
+        }
+
+        const userInfo = JSON.parse(AuthUtils.getAuthInfo(AuthUtils.userInfoTokenKey));
+        if (userInfo) {
+            userInfo.balance = result.response.balance;
+            AuthUtils.setAuthInfo(accessToken, refreshToken, JSON.stringify(userInfo));
         }
     }
 }

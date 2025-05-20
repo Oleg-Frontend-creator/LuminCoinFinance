@@ -66,6 +66,25 @@ body {
     transition: .5s all;
 }
 
+.nav-item.pill-item .nav-link:hover {
+    background-color: #6C757D;
+}
+
+.nav-item.pill-item .nav-link.active {
+    background-color: #6C757D;
+}
+
+.nav-item .date-field {
+    transition: .5s all;
+    color: #adb5bd;
+    border-bottom: 2px solid #adb5bd;
+}
+
+.nav-item .date-field:hover {
+    color: #50565b;
+    border-bottom: 2px solid #50565b;
+}
+
 .burger {
     display: none;
     transition: .5s all;
@@ -166,6 +185,11 @@ tr {
     padding: 13px 0;
 }
 
+td svg, td a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
 .person-info .person-name-text.logout {
     display: none;
     transition: all .5s;
@@ -177,4 +201,8 @@ tr {
 .person-info .logout-btn.active {
     display: block;
     transition: all .5s;
+}
+
+.person-icon {
+    cursor: pointer;
 }
