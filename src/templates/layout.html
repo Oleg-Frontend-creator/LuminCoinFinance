@@ -32,7 +32,7 @@
             </div>
             <ul class="nav nav-pills flex-column d-flex">
                 <li class="nav-item">
-                    <a class="text-decoration-none nav-link d-flex align-items-center active" href="/">
+                    <a class="custom-page-link text-decoration-none nav-link d-flex align-items-center" href="/">
                         <svg class="me-2 link-svg" width="15" height="14" viewBox="0 0 15 14" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -49,7 +49,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="text-decoration-none nav-link d-flex align-items-center" href="/operations">
+                    <a class="custom-page-link text-decoration-none nav-link d-flex align-items-center"
+                       href="/operations">
                         <svg class="me-2 link-svg" width="16" height="16" viewBox="0 0 16 16" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -68,7 +69,8 @@
                 <li class="nav-item">
                     <button class="btn px-3 py-2 w-100 btn-toggle d-inline-flex align-items-center rounded border-0
                     collapsed rounded-bottom-0"
-                            data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+                            data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false"
+                            id="toggle-btn">
                         <div class="category-nav d-flex w-100 pe-2 align-items-center justify-content-between">
                             <span class="link-text text-primary-emphasis">Категории</span>
                         </div>
@@ -76,12 +78,14 @@
                     <div class="collapse" id="home-collapse" style="">
                         <ul class="nav nav-pills flex-column mb-auto list-group">
                             <li class="list-group-item list-group-item-action p-0 rounded-0">
-                                <a class="text-decoration-none nav-link d-flex align-items-center" href="/incomes">
+                                <a class="custom-page-link text-decoration-none nav-link d-flex align-items-center"
+                                   href="/categories/income">
                                     <span class="link-text text-primary-emphasis">Доходы</span>
                                 </a>
                             </li>
                             <li class="list-group-item list-group-item-action p-0">
-                                <a class="text-decoration-none nav-link d-flex align-items-center" href="/expenses">
+                                <a class="custom-page-link text-decoration-none nav-link d-flex align-items-center"
+                                   href="/categories/expense">
                                     <span class="link-text text-primary-emphasis">Расходы</span>
                                 </a>
                             </li>
@@ -95,11 +99,11 @@
                 Баланс: <span class="text-primary fw-bold ms-2" id="balance-number"> $</span>
             </div>
             <div
-               class="person-info d-flex align-items-center mb-md-4 pt-md-3 mb-0 pt-0 border-top border-dark
+                    class="person-info d-flex align-items-center mb-md-4 pt-md-3 mb-0 pt-0 border-top border-dark
                border-opacity-25 text-decoration-none text-primary-emphasis">
-                <img class="mx-3 mt-1" src="/images/person-icon.png" alt="Person icon" id="person-icon">
+                <img class="mx-3 mt-1 person-icon" src="/images/person-icon.png" alt="Person icon" id="person-icon">
                 <span class="person-name-text" id="person-name">RomanChernov</span>
-                <a href="/logout" class="logout-btn btn btn-danger" id="logout-btn">Выйти</a>
+                <a href="/logout" id="logout-link" type="button" class="logout-btn btn btn-danger">Выйти</a>
             </div>
         </footer>
     </div>
