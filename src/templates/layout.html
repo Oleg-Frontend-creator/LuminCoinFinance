@@ -1,4 +1,4 @@
-<section class="d-flex justify-content-between h-100 min-vh-100 flex-column flex-md-row">
+<section class="layout d-flex justify-content-between h-100 min-vh-100 flex-column flex-md-row">
     <div class="sidebar-block d-flex flex-md-column flex-row flex-shrink-0 py-3 px-0 border-end border-dark-subtle
     px-3 px-md-0 justify-content-between justify-content-md-start"
          style="width: 280px;">
@@ -96,18 +96,32 @@
         </nav>
         <footer class="sidebar-footer position-relative top-0 d-md-block d-flex flex-sm-row flex-column">
             <div class="balance-block w-100 ps-3 mb-md-3 mb-0 d-md-block d-flex align-items-center">
-                Баланс: <span class="text-primary fw-bold ms-2" id="balance-number"> $</span>
+                Баланс: <span class="text-primary fw-bold ms-2" id="balance-number"></span>
             </div>
             <div
                     class="person-info d-flex align-items-center mb-md-4 pt-md-3 mb-0 pt-0 border-top border-dark
                border-opacity-25 text-decoration-none text-primary-emphasis">
                 <img class="mx-3 mt-1 person-icon" src="/images/person-icon.png" alt="Person icon" id="person-icon">
-                <span class="person-name-text" id="person-name">RomanChernov</span>
+                <span class="person-name-text" id="person-name"></span>
                 <a href="/logout" id="logout-link" type="button" class="logout-btn btn btn-danger">Выйти</a>
             </div>
         </footer>
     </div>
     <div class="content-block w-100 d-flex pt-0 pt-md-5 ms-0 ms-md-5 ps-2 flex-column align-items-center
-    align-items-md-start pb-4" id="content-block">
+    align-items-md-start pb-4" id="content-block"></div>
+    <div class="modalBackground" id="modal">
+        <div class="modal-window">
+            <div class="modal-body text-primary-emphasis fw-bold text-center mt-3 fs-5">
+                Вы действительно хотите удалить категорию? Связанные расходы будут удалены навсегда.
+                <div class="button-group mt-3 pt-1 mb-4 mb-0">
+                    <button id="delete-category-btn" type="button" class="btn btn-success me-2">
+                        Да, удалить
+                    </button>
+                    <button type="button" class="btn btn-danger ms-1">
+                        Не удалять
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </section>

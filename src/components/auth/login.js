@@ -61,7 +61,7 @@ export class Login {
     }
 
     async getUserBalance(accessToken, refreshToken) {
-        const result = await HttpUtils.request('/balance', 'GET', true);
+        const result = await HttpUtils.request('/balance');
 
         if (result.error || !result.response) {
             console.log(result.response.message)

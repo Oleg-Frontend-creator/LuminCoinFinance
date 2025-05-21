@@ -206,3 +206,28 @@ td svg, td a {
 .person-icon {
     cursor: pointer;
 }
+
+.modalBackground {
+    display: none;
+    background: rgba(0, 0, 0, 0.45);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.modal-window {
+    position: absolute;
+    width: 530px;
+    height: 184px;
+    top: calc(50% - 92px);
+    left: calc(50% - 265px);
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #CED4DA;
+}
+
+.modal-body {
+    position: relative;
+}

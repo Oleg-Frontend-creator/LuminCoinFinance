@@ -10,8 +10,6 @@ import {OperationList} from "./src/components/operations/operation-list";
 import {OperationCreate} from "./src/components/operations/operation-create";
 import {OperationEdit} from "./src/components/operations/operation-edit";
 import {OperationDelete} from "./src/components/operations/operation-delete";
-import {IncomeDelete} from "./src/components/category income/income-delete";
-import {ExpenseDelete} from "./src/components/category expense/expense-delete";
 import {SignUp} from "./src/components/auth/sign-up";
 import {Logout} from "./src/components/auth/logout";
 import {Login} from "./src/components/auth/login";
@@ -42,7 +40,7 @@ export class Router {
                 title: 'Категория доходов',
                 filePathTemplate: '/templates/pages/category income/list.html',
                 load: () => {
-                    new IncomeList();
+                    new IncomeList(this.openNewRoute.bind(this));
                 },
                 useLayout: '/templates/layout.html'
             },
@@ -60,22 +58,16 @@ export class Router {
                 title: 'Редактирование категории доходов',
                 filePathTemplate: '/templates/pages/category income/edit.html',
                 load: () => {
-                    new IncomeEdit();
+                    new IncomeEdit(this.openNewRoute.bind(this));
                 },
                 useLayout: '/templates/layout.html'
-            },
-            {
-                route: '/categories/income/delete',
-                load: () => {
-                    new IncomeDelete();
-                }
             },
             {
                 route: '/categories/expense',
                 title: 'Категория расходов',
                 filePathTemplate: '/templates/pages/category expense/list.html',
                 load: () => {
-                    new ExpenseList();
+                    new ExpenseList(this.openNewRoute.bind(this));
                 },
                 useLayout: '/templates/layout.html'
             },
@@ -84,7 +76,7 @@ export class Router {
                 title: 'Создание категории расходов',
                 filePathTemplate: '/templates/pages/category expense/create.html',
                 load: () => {
-                    new ExpenseCreate();
+                    new ExpenseCreate(this.openNewRoute.bind(this));
                 },
                 useLayout: '/templates/layout.html'
             },
@@ -93,22 +85,16 @@ export class Router {
                 title: 'Редактирование категории расходов',
                 filePathTemplate: '/templates/pages/category expense/edit.html',
                 load: () => {
-                    new ExpenseEdit();
+                    new ExpenseEdit(this.openNewRoute.bind(this));
                 },
                 useLayout: '/templates/layout.html'
-            },
-            {
-                route: '/categories/expense/delete',
-                load: () => {
-                    new ExpenseDelete();
-                }
             },
             {
                 route: '/operations',
                 title: 'Операции',
                 filePathTemplate: '/templates/pages/operations/list.html',
                 load: () => {
-                    new OperationList();
+                    new OperationList(this.openNewRoute.bind(this));
                 },
                 useLayout: '/templates/layout.html'
             },
@@ -126,7 +112,7 @@ export class Router {
                 title: 'Обновление операции',
                 filePathTemplate: '/templates/pages/operations/edit.html',
                 load: () => {
-                    new OperationEdit();
+                    new OperationEdit(this.openNewRoute.bind(this));
                 },
                 useLayout: '/templates/layout.html'
             },
@@ -190,6 +176,10 @@ export class Router {
     }
 
     async openNewRoute(url) {
+        if (!AuthUtils.getAuthInfo(AuthUtils.accessTokenKey) || !AuthUtils.getAuthInfo(AuthUtils.refreshTokenKey)) {
+            localStorage.clear();
+            url = '/login';
+        }
         const currentRoute = window.location.pathname;
         history.pushState({}, '', url);
         await this.activateRoute(null, currentRoute);

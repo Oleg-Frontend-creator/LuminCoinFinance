@@ -24,7 +24,7 @@
         text-align: center;
     }
 
-    .burger{
+    .burger {
         width: 25px;
         cursor: pointer;
     }
@@ -102,6 +102,13 @@
     .modal-body {
         font-size: 18px !important;
     }
+
+    .modal-window {
+        width: 450px;
+        height: unset;
+        top: calc(50% - 75px);
+        left: calc(50% - 225px);
+    }
 }
 
 
@@ -110,6 +117,7 @@
         width: 12px;
         height: auto;
     }
+
     span#person-name, .balance-block {
         font-size: 14px;
     }
@@ -121,12 +129,18 @@
     .modal-body {
         font-size: 14px !important;
     }
+
+    .modal-window {
+        width: 300px;
+        left: calc(50% - 150px);
+    }
 }
 
 @media screen and (max-width: 400px) {
     .table {
         font-size: 10px;
     }
+
     .card-title {
         font-size: 20px !important;
     }
