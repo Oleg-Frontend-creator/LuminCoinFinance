@@ -21,8 +21,6 @@ export class Router {
     constructor() {
         this.titlePageElement = document.getElementById('title');
         this.contentPageElement = document.getElementById('content');
-        this.userName = null;
-        this.userBalance = null;
 
         this.routes = [
             {
@@ -30,7 +28,7 @@ export class Router {
                 title: 'Главная',
                 filePathTemplate: '/templates/pages/main-page.html',
                 load: () => {
-                    new MainPage();
+                    new MainPage(this.openNewRoute.bind(this));
                 },
                 useLayout: '/templates/layout.html',
                 scripts: [
@@ -190,6 +188,11 @@ export class Router {
     }
 
     async openNewRoute(url) {
+        if (url !== '/signup')
+            if (!AuthUtils.getAuthInfo(AuthUtils.accessTokenKey) || !AuthUtils.getAuthInfo(AuthUtils.refreshTokenKey)) {
+                localStorage.clear();
+                url = '/login';
+            }
         const currentRoute = window.location.pathname;
         history.pushState({}, '', url);
         await this.activateRoute(null, currentRoute);
@@ -216,7 +219,7 @@ export class Router {
     }
 
     async activateRoute(e, oldRoute = null) {
-        if (oldRoute) { //очистка прошлого роута для последующей загрузки страницы без миллиона link со стилями
+            if (oldRoute) { //очистка прошлого роута для последующей загрузки страницы без миллиона link со стилями
             const currentRoute = this.routes.find(item => item.route === oldRoute);
             if (currentRoute.scripts && currentRoute.scripts.length > 0) {
                 currentRoute.scripts.forEach(script => document.querySelector(`script[src='/js/${script}']`).remove());

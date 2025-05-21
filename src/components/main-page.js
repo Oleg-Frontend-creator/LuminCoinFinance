@@ -1,11 +1,17 @@
 import {ClickUtils} from "../utils/click-utils";
+import {AuthUtils} from "../utils/auth-utils";
 
 export class MainPage {
-    constructor() {
+    constructor(openNewRoute) {
+        this.openNewRoute = openNewRoute;
         this.init();
     }
 
     init() {
+        if (!AuthUtils.getAuthInfo(AuthUtils.refreshTokenKey) || !AuthUtils.getAuthInfo(AuthUtils.accessTokenKey)) {
+            this.openNewRoute('/login');
+        }
+
         (new Chart(document.getElementById('pie-chart-income'), {
             type: 'pie',
             data: {
