@@ -103,21 +103,36 @@
                border-opacity-25 text-decoration-none text-primary-emphasis">
                 <img class="mx-3 mt-1 person-icon" src="/images/person-icon.png" alt="Person icon" id="person-icon">
                 <span class="person-name-text" id="person-name"></span>
-                <a href="/logout" id="logout-link" type="button" class="logout-btn btn btn-danger">Выйти</a>
+                <a href="/logout" id="logout-btn" type="button" class="logout-btn btn btn-danger">Выйти</a>
             </div>
         </footer>
     </div>
     <div class="content-block w-100 d-flex pt-0 pt-md-5 ms-0 ms-md-5 ps-2 flex-column align-items-center
     align-items-md-start pb-4" id="content-block"></div>
-    <div class="modalBackground" id="modal">
-        <div class="modal-window">
+    <div class="modalBackground" id="modal-category">
+        <div class="modal-window" id="modal-category-window">
             <div class="modal-body text-primary-emphasis fw-bold text-center mt-3 fs-5">
                 Вы действительно хотите удалить категорию? Связанные расходы будут удалены навсегда.
                 <div class="button-group mt-3 pt-1 mb-4 mb-0">
                     <button id="delete-category-btn" type="button" class="btn btn-success me-2">
                         Да, удалить
                     </button>
-                    <button type="button" class="btn btn-danger ms-1">
+                    <button type="button" class="btn btn-danger ms-1" id="modal-category-close-button">
+                        Не удалять
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modalBackground" id="modal-operation">
+        <div class="modal-window" id="modal-operation-window">
+            <div class="modal-body text-primary-emphasis fw-bold text-center mt-3 fs-5">
+                Вы действительно хотите удалить выбранную операцию?
+                <div class="button-group mt-3 pt-1 mb-4 mb-0">
+                    <button id="delete-operation-btn" type="button" class="btn btn-success me-2">
+                        Да, удалить
+                    </button>
+                    <button type="button" class="btn btn-danger ms-1" id="modal-operation-close-button">
                         Не удалять
                     </button>
                 </div>

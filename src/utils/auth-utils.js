@@ -5,9 +5,11 @@ export class AuthUtils {
     static refreshTokenKey = 'refreshToken';
     static userInfoTokenKey = 'userInfo';
 
-    static setAuthInfo(accessToken, refreshToken, userInfo = null) {
-        localStorage.setItem(this.accessTokenKey, accessToken);
-        localStorage.setItem(this.refreshTokenKey, refreshToken);
+    static setAuthInfo(accessToken = null, refreshToken = null, userInfo = null) {
+        if (accessToken && refreshToken) {
+            localStorage.setItem(this.accessTokenKey, accessToken);
+            localStorage.setItem(this.refreshTokenKey, refreshToken);
+        }
         if (userInfo)
             localStorage.setItem(this.userInfoTokenKey, userInfo);
     }
@@ -45,16 +47,14 @@ export class AuthUtils {
             if (response && response.status === 200) {
                 const tokens = await response.json();
                 if (tokens && !tokens.error) {
-                    this.setAuthInfo(tokens.accessToken, tokens.refreshToken);
+                    this.setAuthInfo(tokens.tokens.accessToken, tokens.tokens.refreshToken);
                     result = true;
                 }
             }
         }
-
         if (!result) {
             this.removeAuthInfo();
         }
-
         return result;
     }
 }

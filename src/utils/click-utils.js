@@ -1,19 +1,27 @@
 export class ClickUtils {
     static addEvents(path) {
-        document.getElementById('burger').onclick = function () {
-            document.getElementById('menu').classList.add('open');
-        }
-        document.getElementById('close').addEventListener("click", () => {
-            document.getElementById('menu').classList.remove('open');
-        });
+        this.addMenuLayoutEvents(path);
+        this.addModalEvents();
+    }
+
+    static addMenuLayoutEvents(path) {
+        const menuElement = document.getElementById('menu');
+        const personNameElement = document.getElementById('person-name');
+        const logoutButton = document.getElementById('logout-btn');
+
+        document.getElementById('burger').addEventListener("click", () =>
+            menuElement.classList.add('open'));
+
+        document.getElementById('close').addEventListener("click", () =>
+            menuElement.classList.remove('open'));
 
         document.getElementById('person-icon').addEventListener("click", () => {
-            if (document.getElementById('person-name').classList.contains('logout')) {
-                document.getElementById('person-name').classList.remove('logout');
-                document.getElementById('logout-btn').classList.remove('active');
+            if (personNameElement.classList.contains('logout')) {
+                logoutButton.classList.remove('active');
+                personNameElement.classList.remove('logout');
             } else {
-                document.getElementById('person-name').classList.add('logout');
-                document.getElementById('logout-link').classList.add('active');
+                logoutButton.classList.add('active');
+                personNameElement.classList.add('logout');
             }
         });
 
@@ -21,7 +29,6 @@ export class ClickUtils {
         const expenseCategoryLinks = ['/categories/expense/create', '/categories/expense/edit'];
         const incomeCategoryLinks = ['/categories/income/create', '/categories/income/edit'];
         const operationLinks = ['/operations/create', '/operations/edit'];
-
 
         const toggleButtonElement = document.getElementById('toggle-btn');
         const toggleButtonChildElement = document.getElementById('home-collapse');
@@ -43,5 +50,15 @@ export class ClickUtils {
                 pageLinkElements[i].classList.remove('active');
             }
         }
+    }
+
+    static addModalEvents() {
+        document.getElementById('modal-category-close-button').addEventListener('click', () => {
+            document.getElementById('modal-category').style.display = 'none';
+        });
+
+        document.getElementById('modal-operation-close-button').addEventListener('click', () => {
+            document.getElementById('modal-operation').style.display = 'none';
+        });
     }
 }

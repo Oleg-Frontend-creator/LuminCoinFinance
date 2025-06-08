@@ -8,15 +8,12 @@ export class HttpUtils {
             response: null
         };
         const params = {
-            method: method
+            method: method,
+            headers: {
+                "Content-type": "application/json",
+                "Accept": "application/json",
+            }
         };
-
-        params.headers = {
-            "Content-type": "application/json",
-            "Accept": "application/json",
-        }
-
-
         let token = AuthUtils.getAuthInfo(AuthUtils.accessTokenKey);
         if (useAuth) {
             if (token) {

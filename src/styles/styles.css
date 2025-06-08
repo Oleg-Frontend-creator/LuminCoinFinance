@@ -74,13 +74,39 @@ body {
     background-color: #6C757D;
 }
 
-.nav-item .date-field {
+.date-field {
+    transition: .5s all;
+    color: #adb5bd;
+    border-bottom: 2px solid #adb5bd;
+    display: none;
+}
+
+.date-field[type="date"] {
+    all: unset;
+    width: 110px;
+    display: none;
+}
+
+input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+    color: #6C757D;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    margin-left: 5px;
+}
+
+.date-field:hover {
+    color: #50565b;
+    border-bottom: 2px solid #50565b;
+}
+
+.date-span {
     transition: .5s all;
     color: #adb5bd;
     border-bottom: 2px solid #adb5bd;
 }
 
-.nav-item .date-field:hover {
+.date-span:hover {
     color: #50565b;
     border-bottom: 2px solid #50565b;
 }
@@ -105,10 +131,6 @@ body {
 
 .close-menu.open {
     display: block;
-}
-
-.date-field {
-    color: #6C757D;
 }
 
 .content-block .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
@@ -183,6 +205,8 @@ tr {
 
 .table th, .table td {
     padding: 13px 0;
+    word-wrap: break-word;
+    white-space: normal;
 }
 
 td svg, td a {
@@ -190,12 +214,9 @@ td svg, td a {
     text-decoration: none;
 }
 
-.person-info .person-name-text.logout {
+.person-info .person-name-text.logout, .logout-btn {
     display: none;
     transition: all .5s;
-}
-.person-info .logout-btn {
-    display: none;
 }
 
 .person-info .logout-btn.active {
@@ -215,6 +236,7 @@ td svg, td a {
     height: 100%;
     cursor: pointer;
     z-index: 2;
+    animation: blackout .3s forwards;
 }
 
 .modal-window {
@@ -226,8 +248,29 @@ td svg, td a {
     border-radius: 12px;
     background-color: rgb(255, 255, 255);
     border: 1px solid #CED4DA;
+    animation: move-in .7s forwards alternate;
 }
 
 .modal-body {
     position: relative;
+}
+
+@keyframes move-in {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes blackout {
+    0% {
+        background: rgba(0, 0, 0, 0);
+    }
+    100% {
+        background: rgba(0, 0, 0, 0.45);
+    }
 }

@@ -4,19 +4,20 @@
 <div class="main-content container-fluid">
     <form class="form">
         <div class="input-group">
-            <input class="operation-input form-control expense-name-input mb-2 rounded-2" id="typeInput" placeholder="Тип...">
-            <span id="typeInput-error" class="error invalid-feedback">Заполните поле</span>
+            <input class="operation-input form-control expense-name-input mb-2 rounded-2" id="typeInput"
+                  readonly placeholder="Тип...">
         </div>
         <div class="input-group">
-            <input class="operation-input form-control expense-name-input mb-2 rounded-2" id="categoryInput" placeholder="Категория...">
-            <span id="categoryInput-error" class="error invalid-feedback">Заполните поле</span>
+            <select class="form-select operation-input form-control expense-name-input mb-2 rounded-2" id="categoryInput">
+                <option selected value="-1">Категория...</option>
+            </select>
         </div>
         <div class="input-group">
             <input class="operation-input form-control expense-name-input mb-2 rounded-2" id="amountInput" placeholder="Сумма в $...">
             <span id="amountInput-error" class="error invalid-feedback">Заполните поле</span>
         </div>
         <div class="input-group">
-            <input class="operation-input form-control expense-name-input mb-2 rounded-2" id="dateInput" placeholder="Дата...">
+            <input type="date" class="operation-input form-control expense-name-input mb-2 rounded-2" id="dateInput" placeholder="Дата...">
             <span id="dateInput-error" class="error invalid-feedback">Заполните поле</span>
         </div>
         <div class="input-group">

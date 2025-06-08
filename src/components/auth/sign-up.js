@@ -61,7 +61,7 @@ export class SignUp {
 
             if (result.error || !result.response || (result.response && (!result.response.user.id ||
                 !result.response.user.email || !result.response.user.name || !result.response.user.lastName))) {
-                console.log(result.response.message)
+                console.log(result.response.message);
                 return false;
             }
 
