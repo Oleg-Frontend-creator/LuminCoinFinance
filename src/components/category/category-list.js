@@ -85,6 +85,8 @@ export class CategoryList {
 
     async deleteCategory() {
         const id = this.modalElement.getAttribute('data-category-id');
+
+
         const result = await HttpUtils.request(`/categories/${this.categoryType}/${id}`, 'DELETE', true);
 
         if (result.error) {
@@ -92,7 +94,19 @@ export class CategoryList {
             return result.redirect ? this.openNewRoute(result.redirect) : null;
         }
 
+        await this.deleteOperations(id);
         document.getElementById('category-card-' + id).remove();
         this.modalElement.style.display = 'none';
+    }
+
+    async deleteOperations(categoryId) {
+        const category = await HttpUtils.request(`/categories/${this.categoryType}/${categoryId}`);
+        const categoryName = category.response.title;
+
+        const operations = await HttpUtils.request('/operations?period=interval&dateFrom=1000-01-01&dateTo=3000-01-01');
+
+        operations.response.forEach(operation => {
+            operation.category === categoryName ? HttpUtils.request('/operations/' + operation.id, 'DELETE', true) : '';
+        });
     }
 }

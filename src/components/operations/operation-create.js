@@ -21,7 +21,7 @@ export class OperationCreate {
 
     async findElements() {
         this.typeInputElement = document.getElementById('typeInput');
-        this.categoryInputElement = document.getElementById('categoryInput');
+        this.categorySelectElement = document.getElementById('categorySelect');
         this.createButtonElement = document.getElementById('create-button');
         await this.setCategoriesInSelect();
         this.amountInputElement = document.getElementById('amountInput');
@@ -49,7 +49,7 @@ export class OperationCreate {
                 amount: this.amountInputElement.value,
                 comment: this.commentInputElement.value,
                 date: this.dateInputElement.value,
-                category_id: parseInt(this.categoryInputElement.value)
+                category_id: parseInt(this.categorySelectElement.value)
             };
 
             return this.createNewOperation(data);
@@ -58,6 +58,13 @@ export class OperationCreate {
 
     validation() {
         let isError = false;
+
+        if (parseInt(this.categorySelectElement.value) === -1) {
+            this.categorySelectElement.classList.add('is-invalid');
+            isError = true;
+        } else {
+            this.categorySelectElement.classList.remove('is-invalid');
+        }
 
         if (!this.amountInputElement.value || !this.amountInputElement.value.match(/^\d+\$?$/)) {
             this.amountInputElement.classList.add('is-invalid');
@@ -90,13 +97,17 @@ export class OperationCreate {
             return this.categories.redirect ? this.openNewRoute(this.categories.redirect) : null;
         }
 
-        if (this.categories.response)
+        if (this.categories.response && this.categories.response.length) {
             for (let i = 0; i < this.categories.response.length; i++) {
                 const optionElement = document.createElement('option');
                 optionElement.value = this.categories.response[i].id;
                 optionElement.innerText = this.categories.response[i].title;
-                this.categoryInputElement.appendChild(optionElement);
+                this.categorySelectElement.appendChild(optionElement);
             }
+        } else {
+            alert('Категории отсутствуют. Пожалуйста, вернитесь на страницы создания категорий и создайте их.');
+            return this.openNewRoute('/');
+        }
 
         this.createButtonElement.addEventListener('click', this.createButtonClick.bind(this));
     }

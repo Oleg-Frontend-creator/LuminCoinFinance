@@ -17,7 +17,7 @@ export class OperationEdit {
 
     async findElements() {
         this.typeInputElement = document.getElementById('typeInput');
-        this.categoryInputElement = document.getElementById('categoryInput');
+        this.categorySelectElement = document.getElementById('categorySelect');
         this.amountInputElement = document.getElementById('amountInput');
         this.dateInputElement = document.getElementById('dateInput');
         this.commentInputElement = document.getElementById('commentInput');
@@ -33,6 +33,7 @@ export class OperationEdit {
             return result.redirect ? this.openNewRoute(result.redirect) : null;
         }
 
+        this.operationType = result.response.type;
         if (result.response.type === 'expense') {
             this.typeInputElement.value = "Расход";
         } else if (result.response.type === 'income') {
@@ -40,8 +41,7 @@ export class OperationEdit {
         } else {
             this.typeInputElement.value = "Неизвестно";
         }
-        await this.setCategoriesInSelect();
-        this.categoryInputElement = result.response.category ? result.response.category : '';
+        await this.setCategoriesInSelect(result.response.category);
         this.amountInputElement.value = result.response.amount;
         this.dateInputElement.value = result.response.date;
         this.commentInputElement.value = result.response.comment;
@@ -57,8 +57,8 @@ export class OperationEdit {
                 comment: this.commentInputElement.value,
                 date: this.dateInputElement.value
             };
-            if (this.categoryInputElement.value)
-                data.category_id = await this.getCategoryId(this.categoryInputElement.value,
+            if (this.categorySelectElement.value)
+                data.category_id = await this.getCategoryId(this.categorySelectElement.value,
                     (this.typeInputElement.value.toLowerCase().trim() === 'расход') ? "expense" : "income");
 
             const result = await HttpUtils.request('/operations/' + this.operationId, 'PUT', true, data);
@@ -80,6 +80,13 @@ export class OperationEdit {
             isError = true;
         } else {
             this.typeInputElement.classList.remove('is-invalid');
+        }
+
+        if (parseInt(this.categorySelectElement.value) === -1) {
+            this.categorySelectElement.classList.add('is-invalid');
+            isError = true;
+        } else {
+            this.categorySelectElement.classList.remove('is-invalid');
         }
 
         if (!this.amountInputElement.value || !this.amountInputElement.value.match(/^\d+\$?$/)) {
@@ -117,7 +124,7 @@ export class OperationEdit {
         return categories.response.find(category => category.title === categoryName).id;
     }
 
-    async setCategoriesInSelect() {
+    async setCategoriesInSelect(currentCategoryName) {
         this.categories = await HttpUtils.request('/categories/' + this.operationType);
         if (this.categories.error) {
             console.log(this.categories.response ? this.categories.response.message : 'неизвестная ошибка');
@@ -129,9 +136,10 @@ export class OperationEdit {
                 const optionElement = document.createElement('option');
                 optionElement.value = this.categories.response[i].id;
                 optionElement.innerText = this.categories.response[i].title;
-                this.categoryInputElement.appendChild(optionElement);
+                if (optionElement.innerText === currentCategoryName) {
+                    optionElement.selected = true;
+                }
+                this.categorySelectElement.appendChild(optionElement);
             }
-
-        this.createButtonElement.addEventListener('click', this.createButtonClick.bind(this));
     }
 }

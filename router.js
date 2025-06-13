@@ -97,13 +97,7 @@ export class Router {
                 filePathTemplate: '/templates/pages/auth/login.html',
                 useLayout: false,
                 load: () => {
-                    document.body.className = "d-flex align-items-center py-4 bg-body-tertiary justify-content-center";
-                    document.body.style.height = "100vh";
                     new Login(this.openNewRoute.bind(this));
-                },
-                unload: () => {
-                    document.body.className = " ";
-                    document.body.style.height = "auto";
                 }
             },
             {
@@ -112,13 +106,7 @@ export class Router {
                 filePathTemplate: '/templates/pages/auth/sign-up.html',
                 useLayout: false,
                 load: () => {
-                    document.body.className = "d-flex align-items-center py-4 bg-body-tertiary justify-content-center";
-                    document.body.style.height = "100vh";
                     new SignUp(this.openNewRoute.bind(this));
-                },
-                unload: () => {
-                    document.body.className = " ";
-                    document.body.style.height = "auto";
                 }
             },
             {
