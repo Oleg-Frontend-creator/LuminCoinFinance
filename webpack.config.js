@@ -3,12 +3,33 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-    entry: './src/app.js',
+    entry: './src/app.ts',
     mode: "development",
+    devtool: 'inline-source-map',
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    "sass-loader"
+                ],
+            }
+        ],
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
+    },
     output: {
-        filename: 'app.js',
+        filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/'
+        clean: true,
     },
     devServer: {
         static: {
@@ -17,18 +38,6 @@ module.exports = {
         compress: true,
         port: 9001,
         historyApiFallback: true,
-    },
-    module: {
-        rules: [
-            {
-                test: /\.s[ac]ss$/i,
-                use: [
-                    "style-loader",
-                    "css-loader",
-                    "sass-loader"
-                ],
-            },
-        ]
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -49,5 +58,5 @@ module.exports = {
                 {from: "./node_modules/chart.js/dist/chart.umd.js", to: "js"}
             ],
         }),
-    ],
+    ]
 };
