@@ -1,0 +1,69 @@
+<header class="content-header my-md-5 my-2">
+    <h1 class="main-title fs-1 fw-bold text-primary-emphasis mb-2" id="page-title">Доходы и расходы</h1>
+</header>
+<div class="main-content container-md ms-0 ps-0">
+    <div class="button-group mb-4 pb-3 d-flex d-md-block justify-content-center">
+        <a href='/operations/create?type=income' class="custom-page-link btn btn-success me-2">Создать доход</a>
+        <a href='/operations/create?type=expense' class="custom-page-link btn btn-danger">Создать расход</a>
+    </div>
+    <div class="pills-time-interval mb-4 pb-3 d-flex flex-column">
+        <ul class="nav nav-pills row-gap-3 justify-content-md-start justify-content-center">
+            <li class="nav-item pill-item">
+                <button type="button" class="time-btn nav-link d-flex justify-content-center align-items-center"
+                        id="today-time-btn">Сегодня
+                </button>
+            </li>
+            <li class="nav-item pill-item">
+                <button type="button" class="time-btn nav-link d-flex justify-content-center align-items-center"
+                        id="week-time-btn">Неделя
+                </button>
+            </li>
+            <li class="nav-item pill-item">
+                <button type="button" class="time-btn nav-link d-flex justify-content-center align-items-center"
+                        id="month-time-btn">Месяц
+                </button>
+            </li>
+            <li class="nav-item pill-item">
+                <button type="button" class="time-btn nav-link d-flex justify-content-center align-items-center"
+                        id="year-time-btn">Год
+                </button>
+            </li>
+            <li class="nav-item pill-item">
+                <button type="button" class="time-btn nav-link d-flex justify-content-center align-items-center active"
+                        id="all-time-btn">Все
+                </button>
+            </li>
+            <li class="nav-item pill-item">
+                <a class="time-btn nav-link d-flex justify-content-center align-items-center" href="#"
+                   id="interval-time-btn">Интервал</a>
+            </li>
+            <li class="nav-item d-flex align-items-center d-flex">
+                <div class="date-block d-flex flex-row">
+                    <span class="me-3 fw-bold">с</span>
+                    <span class="date-span me-4" id="interval-prev-time-span">Дата</span>
+                    <input type="date" class="date-field me-4" id="interval-prev-time-btn">
+                </div>
+                <div class="date-block d-flex flex-row">
+                    <span class="me-3 fw-bold">по</span>
+                    <span class="date-span" id="interval-next-time-span">Дата</span>
+                    <input type="date" class="date-field" id="interval-next-time-btn">
+                </div>
+            </li>
+        </ul>
+    </div>
+    <table class="table">
+        <thead>
+        <tr class="py-2">
+            <th class="head-col text-center text-primary-emphasis fw-bold pe-1" scope="col">№</th>
+            <th class="head-col text-center text-primary-emphasis fw-bold pe-1" scope="col">Тип</th>
+            <th class="head-col text-center text-primary-emphasis fw-bold pe-1" scope="col">Категория</th>
+            <th class="head-col text-center text-primary-emphasis fw-bold pe-1" scope="col">Сумма</th>
+            <th class="head-col text-center text-primary-emphasis fw-bold pe-1" scope="col">Дата</th>
+            <th class="head-col text-center text-primary-emphasis fw-bold" scope="col">Комментарий</th>
+            <th class="head-col text-center" scope="col"></th>
+        </tr>
+        </thead>
+
+        <tbody id="operations-list"></tbody>
+    </table>
+</div>

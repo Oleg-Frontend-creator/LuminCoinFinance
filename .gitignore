@@ -1,0 +1,9 @@
+Backend for JS project.postman_collection.json
+openapi.yaml
+.idea
+frontend/node_modules/
+frontend/.idea/
+frontend/dist/
+backend/node_modules/
+backend/.idea/
+backend/dist/

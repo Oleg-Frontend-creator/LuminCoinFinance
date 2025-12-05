@@ -1,0 +1,39 @@
+<div class="main-content container-fluid">
+    <header class="content-header my-5">
+        <h1 class="main-title fs-1 fw-bold text-primary-emphasis mb-2" id="page-title">Редактирование
+            дохода/расхода</h1>
+    </header>
+    <form class="form">
+        <div class="input-group">
+            <input class="operation-input form-control expense-name-input mb-2 rounded-2" id="typeInput"
+                   placeholder="Тип...">
+            <span id="typeInput-error" class="error invalid-feedback">Заполните поле ("Доход" или "Расход")</span>
+        </div>
+        <div class="input-group">
+            <select class="form-select operation-input form-control expense-name-input mb-2 rounded-2" id="categorySelect">
+                <option value="-1">Категория...</option>
+            </select>
+            <span id="categorySelect-error" class="error invalid-feedback">Выберите категорию</span>
+        </div>
+        <div class="input-group">
+            <input class="operation-input form-control expense-name-input mb-2 rounded-2" id="amountInput"
+                   placeholder="Сумма в $...">
+            <span id="amountInput-error" class="error invalid-feedback">Заполните поле (пример: 500 или 500$)</span>
+        </div>
+        <div class="input-group">
+            <input type="date" class="operation-input form-control expense-name-input mb-2 rounded-2" id="dateInput"
+                   placeholder="Дата...">
+            <span id="dateInput-error"
+                  class="error invalid-feedback">Заполните поле(пример: dd.mm.yyyy, 30.01.2001)</span>
+        </div>
+        <div class="input-group">
+            <input class="operation-input form-control expense-name-input mb-2 rounded-2" id="commentInput"
+                   placeholder="Комментарий...">
+            <span id="commentInput-error" class="error invalid-feedback">Заполните поле</span>
+        </div>
+        <div class="button-group mt-3">
+            <button type="button" id="save-button" class="btn btn-success me-2">Сохранить</button>
+            <a href="/operations" class="custom-page-link btn btn-danger">Отмена</a>
+        </div>
+    </form>
+</div>
